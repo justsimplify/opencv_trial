@@ -2,21 +2,20 @@
 <h4>Prerequisite</h4>
 <ul>
     <li>Python 2.7.x should be installed.</li>
-    <li>OpenCV 3.1.0 should be installed as well. (Use PIP for ease.)</li>
-    <li>Works on Terminal only.</li>
+    <li>OpenCV 3.1.0 should be installed as well. (Use PIP for ease)</li>
+    <li>Numpy should be installed. (Use PIP for ease)</li>
 </ul>
 
 <h4>Instructions to Test</h4>
 <ol>
-    <li>Open Terminal or CMD on Windows at <b><u>"Template Matching"</u></b> folder from the repository.</li>
-    <li>Type <br>
-        <code>python main.py <b>"Template's Url from local device"</b> <b>"Url of image to be tested from local device"</b></code>
-        <br>
-        OR
-        <br>
-        <code>main.py <b>"Template's Url from local device"</b> <b>"Url of image to be tested from local device"</b></code>
+    <li>Run <code>main.exe</code> file and in <code>Template URL</code> and <code>Test URL</code>, enter the absolute path of the images (if image is not present in same working directory) as <br>
+    <code>C:/Folder_Name or Path/image_name</code><br>
+    For example:
+    <code>F:/Tutorial/Matching/sampleTestCase.jpg</code><br>
+    Use forward slashes (/) only (on Windows Machine) for giving URL.
     </li>
-    <li>You will get the result on the terminal itself denoting count of matches.</li>
+    
+    <li>In response, you will get the matching number of points. </li>
 </ol>
 
 <h4>Note</h4>
