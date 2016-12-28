@@ -3,7 +3,7 @@ import numpy as np
 import sys
 
 class templateMatch:
-    def __init__(self, templateUrl, testUrl):
+    def __init__(self, templateUrl, testUrl, conf):
         self.getTemplate(templateUrl)
         self.getMatchingUrl(testUrl)
         self.compare()
@@ -22,7 +22,7 @@ class templateMatch:
         w, h = self.template.shape[::-1]
         w, h = (w/10), (h/10)
         res = cv2.matchTemplate(self.img_gray,self.template,cv2.TM_CCOEFF_NORMED)
-        threshold = 0.85
+        threshold = conf
         loc = np.where( res >= threshold)
         for pt in zip(*loc[::-1]):
             cv2.rectangle(self.img_input, pt, (pt[0] + w, pt[1] + h), (255,255,0), -1)
@@ -30,15 +30,16 @@ class templateMatch:
         upper = np.array([255, 255, 0])
         shapeMask = cv2.inRange(self.img_input, lower, upper)
         _, cnts, _ = cv2.findContours(shapeMask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        print "Number of matches are %d at confidence score of 85 percent." % len(cnts)
+        print "Number of matches are %d at confidence score of %d percent." % (len(cnts), conf*100)
         
 if __name__ == "__main__":
     # pass template and test image local URL respectively
     print "Template URL: "
     temp = raw_input()
-    print "Test URL: "
+    print "\nTest URL: "
     test = raw_input()
-    query = templateMatch(temp, test)
-    print ""
-    print "Press enter key to exit .."
+    print "\nInput Confidence Score (0 to 1 inclusive): "
+    conf = input()
+    query = templateMatch(temp, test, conf)
+    print "\nPress enter key to exit .."
     x = raw_input()
